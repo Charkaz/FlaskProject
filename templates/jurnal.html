@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootsrram.min.css')}}">
+    
+    <title>Jurnal</title>
+</head>
+<body>
+    <script src="{{url_for('static',filename='ajax.js')}}"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/odenecekler">Odenecekler</a>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Ana Sehife <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/odenisler">Odenisler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/jurnal">Jurnal</a>
+            </li>
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0" method="POST" action="/jurnal">
+            <input class="form-control mr-sm-2"  name="axtar" id="axtar" placeholder="Axtar" aria-label="Axtar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Axtar</button>
+          </form>
+        </div>
+      </nav>
+<br>    
+
+ <div class="container">
+     <div class="row">
+         <div class="card col-8 border-primary mb-3">
+           <div class="card-header">Aktiv Statusda olan isciler</div>
+             <div class="card-body">
+         
+         <div >
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Ad ve Soyad</th>
+                    <th scope="col">Baslama tarixi</th>
+                    <th scope="col">Qrup</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in aktivpro %}
+                  <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.adsoyad}}</td>
+                    <td>{{i.baslama}}</td>
+                    <td>{{i.qrup}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              </div>
+              </div>
+         </div>
+         <div class="card col-8 border-primary mb-3">
+          <div class="card-header">Passiv Statusda olan isciler</div>
+             <div class="card-body">
+         
+         <div >
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Ad ve Soyad</th>
+                    <th scope="col">Baslama Tarixi</th>
+                    <th scope="col">Bitme Tarixi</th>
+                    <th scope="col">Mebleg</th>
+                    <th scope="col">Qrup</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in passivpro %}
+                  <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.adsoyad}}</td>
+                    <td>{{i.baslama}}</td>
+                    <td>{{i.bitme}}</td>
+                    <td>{{"%.1f"|format(i.mebleg)}} AZN</td>
+                    <td>{{i.qrup}}</td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              </div>
+              </div>
+         </div>
+     </div>
+
+ </div>
+
+</body>
+</html>

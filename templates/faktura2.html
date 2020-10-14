@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Charkaz Systems</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='faktura2/style.css')}}" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="{{url_for('static',filename='faktura2/logo3.png')}}">
+      </div>
+      <div id="company">
+        <h2 class="name">Agdash Corek Zavodu</h2>
+        <div>455 Foggy Heights, AZ 85004, US</div>
+        <div>(+994 55) 266-22-03</div>
+        <div><a href="mailto:company@example.com">company@example.com</a></div>
+      </div>
+      </div>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">Gonderen: Alishan Charkaz</div>
+          <h2 class="name">Qebul eden: Valeh</h2>
+          <div class="email"><a href="mailto:charkazalishan@outlook.com">charkazalishan@outlook.com</a></div>
+        </div>
+        <div id="invoice">
+          <h1>{{tarix.day}}/{{tarix.month}}/{{tarix.year}}</h1>
+          <div class="date">Saat: {{tarix.hour}}:{{tarix.minute}}</div>
+        
+        </div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">ID</th>
+            <th class="desc">Ad ve Soyad</th>
+            <th class="unit">Maas</th>
+            <th class="qty">Saat</th>
+            <th class="total">Toplam</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in iscilerim %}
+          <tr>
+            <td class="no">{{i.id}}</td>
+            <td class="desc"><b><h2>{{i.adsoyad}}</h2> </b></td>
+            <td class="unit"><b><h3>AZN {{i.maas}}</h3></b> </td>
+            <td class="qty">{{"%.2f"|format(i.hesab/i.maas)}}</td>
+             <td class="total"> <b>AZN {{"%.1f"|format(i.hesab)}}</b></td>
+          </tr>
+          
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+           
+          </tr>
+          
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Toplam Odenecek</td>
+            <td>AZN {{"%.2f"|format(toplam)}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="thanks">Tesekkurler!</div>
+      <div id="notices">
+        <div>Imza:</div>
+        <div class="notice">________________</div>
+      </div>
+    </main>
+    
+  </body>
+</html>

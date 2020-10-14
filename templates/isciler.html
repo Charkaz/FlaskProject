@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootsrram.min.css')}}">
+  
+    <title>Isciler</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/odenecekler">Odenecekler</a>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Ana Sehife <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/odenisler">Odenisler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/jurnal">Jurnal</a>
+        </li>
+       
+      </ul>
+      <form class="form-inline my-2 my-lg-0" method="POST" action="/iscilerim">
+        <input class="form-control mr-sm-2"  name="axtar" id="axtar" placeholder="Axtar" aria-label="Axtar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Axtar</button>
+      </form>
+    </div>
+  </nav>
+
+
+
+  <div class="social-auth-links text-center mb-3">
+    {% include 'mesaj.html' %}
+  </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Ad ve Soyad</th>
+            <th scope="col">Maas</th>
+            <th scope="col">Hesab</th>
+            <th scope="col">Sil</th>
+            <th scope="col">Tenzimle</th>
+            <th scope="col">Odenis et</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for isci in iscilerim %}
+          <tr>
+            <th scope="row">{{isci.id}}</th>
+            <td>{{isci.adsoyad}}</td>
+            <td>
+              {% if isci.ayliq == True %}
+              {{isci.maas}} (Ayliq)
+              {% else %}
+              {{isci.maas}}
+              {% endif %}
+            </td>
+            <td>{{"%.1f"|format(isci.hesab)}} AZN</td>
+            <td><a class="btn btn-danger" href="/delete/{{isci.id}}">Sil</a></td>
+            <td><a class="btn btn-primary" href="/update/{{isci.id}}">Tenzimle</a></td>
+            <td><a class="btn btn-success" href="/odenis/{{isci.id}}">Odenis Et</a></td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      
+    </body>
+</html>

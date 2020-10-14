@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootsrram.min.css')}}">
+    <title>Odenis et</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/odenecekler">Odenecekler</a>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Ana Sehife <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/odenisler">Odenisler</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/jurnal">Jurnal</a>
+            </li>
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0" method="POST" action="/iscilerim">
+            <input class="form-control mr-sm-2"  name="axtar" id="axtar" placeholder="Axtar" aria-label="Axtar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Axtar</button>
+          </form>
+        </div>
+      </nav>
+
+      <hr>
+      <br>
+
+
+      <div class="social-auth-links text-center mb-3">
+        {% include 'mesaj.html' %}
+      </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12  col-centered">
+          <form class="form-inline" method="POST" action="/odeniset/{{iscim.id}}">
+            <div class="form-group mb-2">
+              <label for="staticEmail2" class="sr-only">Iscinin adi ve soyadi:</label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{iscim.adsoyad}} - {{iscim.hesab}} AZN">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputPassword2" class="sr-only"><h2>Miqdar</h2></label>
+              <input type="text" name ="miqdar" id = "miqdar" class="form-control"  placeholder="Miqdar(AZN)">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Odenisi tesdiqle</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+</body>
+</html>
